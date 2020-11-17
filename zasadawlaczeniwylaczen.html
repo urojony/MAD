@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Zasada włączeń i wyłączeń</title>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+<style>
+input {
+	  color: #000;
+	  width: 1.5em;
+	  font-size: 1.5em;
+	  border-radius: 10px;
+	  border: 2px solid #ccc;
+	  padding: 5px;
+	  padding-left: 10px;
+	}
+	input[type=number]::-webkit-inner-spin-button {
+	  cursor: pointer;
+	  display: block;
+	  width: 10px;
+	  text-align: center;
+	  position: relative;
+	  background: transparent;
+	}
+	input[type=number]::-webkit-inner-spin-button::before,
+	input[type=number]::-webkit-inner-spin-button::after {
+	  content: "";
+	  position: absolute;
+	  right: 0;
+	  width: 0;
+	  height: 0;
+	  border-left: 7px solid transparent;
+	  border-right: 7px solid transparent;
+	  border-bottom: 10px solid #777;
+	}
+	input[type=number]::-webkit-inner-spin-button::before {
+	  top: 7px;
+	}
+	input[type=number]::-webkit-inner-spin-button::after {
+	  bottom: 7px;
+	  transform: rotate(180deg);
+	}
+	input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+}
+</style>
+</head>
+
+<body>
+<center>
+Celem tego zadania jest takie ustawienie współczynników wyrażenia, aby otrzymać \(|A\cup B\cup C|\). <br>
+Równoważny cel to sprawienie, aby wszystkie liczby na obrazku były równe 1. <br><br>
+<label for="A">\(|A|\cdot\)</label>
+<input type="number" id="A" value="0" onChange="draw();">
+<label for="B">\(+|B|\cdot\)</label>
+<input type="number" id="B" value="0" onChange="draw();">
+<label for="C">\(+|C|\cdot\)</label>
+<input type="number" id="C" value="0" onChange="draw();">
+<label for="AB">\(+|A\cap B|\cdot\)</label>
+<input type="number" id="AB" value="0" onChange="draw();"> <br>
+<label for="AC">\(+|A\cap C|\cdot\)</label>
+<input type="number" id="AC" value="0" onChange="draw();">
+<label for="BC">\(+|B\cap C|\cdot\)</label>
+<input type="number" id="BC" value="0" onChange="draw();">
+<label for="ABC">\(+|A\cap B\cap C|\cdot\)</label>
+<input type="number" id="ABC" value="0" onChange="draw();"> <br><br>
+<canvas id="canvas" width="500" height="480" style="border:1px solid #d3d3d3;" >
+Your browser does not support the HTML5 canvas tag.</canvas>
+</center>
+
+</body>
+<script>
+draw();
+function	draw(){
+	var canvas = document.getElementById('canvas');
+	if (canvas.getContext){
+		a=Number(document.getElementById("A").value);
+		b=Number(document.getElementById("B").value);
+		c=Number(document.getElementById("C").value);
+		ab=Number(document.getElementById("AB").value);
+		ac=Number(document.getElementById("AC").value);
+		bc=Number(document.getElementById("BC").value);
+		abc=Number(document.getElementById("ABC").value);
+		var ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.beginPath();
+		ctx.arc(170,170,140,0,Math.PI*2,true);
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.arc(320,170,140,0,Math.PI*2,true);
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.arc(170+75,170+130,140,0,Math.PI*2,true);
+		ctx.stroke();
+		ctx.font = "40px Arial";
+		ctx.fillText("A",20,40);
+		ctx.fillText("B",420,40);
+		ctx.fillText("C",250,480);
+		ctx.fillText(a, 80, 170);
+		ctx.fillText(b, 400, 170);
+		ctx.fillText(c, 230, 380);
+		ctx.fillText(a+b+ab, 230, 130);
+		ctx.fillText(a+c+ac, 150, 280);
+		ctx.fillText(b+c+bc, 320, 280);
+		ctx.fillText(a+b+c+ab+ac+bc+abc, 230, 230);
+	}
+}
+</script> 
+</html>
+
+
+
